@@ -119,19 +119,11 @@ fi
 # Install the solver(s)!
 ${PYTHON} install.py --confirm-agreement
 
-echo 'HERE'
+echo 'pysmt_solver'
 echo ${PYSMT_SOLVER}
 
-if [ "${PYSMT_SOLVER}" == "z3_wrap" ]; then
-    echo 'also here'
-fi
-
-if [ "${PYSMT_SOLVER}" == "all" ] || [ "${PYSMT_SOLVER}" == "z3_wrap" ]; then
-    echo 'here too'
-fi
-
 # Install the binaries for the *_wrap case
-if [ "${PYSMT_SOLVER}" == "all" ] || [ "${PYSMT_SOLVER}" == *"z3_wrap"* ]; then
+if [ "${PYSMT_SOLVER}" == "all" ] || [ "${PYSMT_SOLVER}" == "z3_wrap" ]; then
 
     echo 'apparently not here'
     ${PYTHON} install.py --z3 --conf --force;
@@ -139,7 +131,7 @@ if [ "${PYSMT_SOLVER}" == "all" ] || [ "${PYSMT_SOLVER}" == *"z3_wrap"* ]; then
     chmod +x pysmt/test/smtlib/bin/z3;
     mv pysmt/test/smtlib/bin/z3.solver.sh.template pysmt/test/smtlib/bin/z3.solver.sh ;
 fi
-if [ "${PYSMT_SOLVER}" == "all" ] || [ "${PYSMT_SOLVER}" == *"msat_wrap"* ];
+if [ "${PYSMT_SOLVER}" == "all" ] || [ "${PYSMT_SOLVER}" == "msat_wrap" ];
 then
     ${PYTHON} install.py --msat --conf --force;
     cp -v $(find ~/.smt_solvers/ -name mathsat -type f) pysmt/test/smtlib/bin/mathsat;
