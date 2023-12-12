@@ -122,8 +122,18 @@ ${PYTHON} install.py --confirm-agreement
 echo 'HERE'
 echo ${PYSMT_SOLVER}
 
+if [ "${PYSMT_SOLVER}" == "z3_wrap" ]; then
+    echo 'also here'
+fi
+
+if [ "${PYSMT_SOLVER}" == "all" ] || [ "${PYSMT_SOLVER}" == "z3_wrap" ]; then
+    echo 'here too'
+fi
+
 # Install the binaries for the *_wrap case
 if [ "${PYSMT_SOLVER}" == "all" ] || [ "${PYSMT_SOLVER}" == *"z3_wrap"* ]; then
+
+    echo 'apparently not here'
     ${PYTHON} install.py --z3 --conf --force;
     cp -v $(find ~/.smt_solvers/ -name z3 -type f) pysmt/test/smtlib/bin/z3;
     chmod +x pysmt/test/smtlib/bin/z3;
