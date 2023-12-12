@@ -119,6 +119,9 @@ fi
 # Install the solver(s)!
 ${PYTHON} install.py --confirm-agreement
 
+echo 'HERE'
+echo ${PYSMT_SOLVER}
+
 # Install the binaries for the *_wrap case
 if [ "${PYSMT_SOLVER}" == "all" ] || [ "${PYSMT_SOLVER}" == *"z3_wrap"* ]; then
     ${PYTHON} install.py --z3 --conf --force;
